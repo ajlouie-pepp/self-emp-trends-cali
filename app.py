@@ -28,17 +28,22 @@ st.title("Self-Employment Trends in California (2009–2019)")
 st.markdown("Explore trends by age group and education level.")
 
 # User inputs
-age_input = st.selectbox("Select Age Group", ['Young', 'Mid', 'Older'])
-educ_input = st.selectbox("Select Education Level", sorted(df['educ'].unique()))
+
+# Descriptive age labels for display
 age_labels = {
     "Young (21–35 yrs)": "Young",
     "Mid (36–45 yrs)": "Mid",
     "Older (46–65 yrs)": "Older"
 }
 
+# User selects descriptive label, mapped back to model input value
 age_display = st.selectbox("Select Age Group", list(age_labels.keys()))
-age_input = age_labels[age_display]  # use this for model input
+age_input = age_labels[age_display]  # model input
 
+# Education level dropdown
+educ_input = st.selectbox("Select Education Level", sorted(df['educ'].unique()))
+
+educ_input = st.selectbox("Select Education Level", sorted(df['educ'].unique()))
 
 # Prepare input for prediction
 input_df = pd.DataFrame({
