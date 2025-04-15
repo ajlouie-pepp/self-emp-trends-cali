@@ -30,6 +30,15 @@ st.markdown("Explore trends by age group and education level.")
 # User inputs
 age_input = st.selectbox("Select Age Group", ['Young', 'Mid', 'Older'])
 educ_input = st.selectbox("Select Education Level", sorted(df['educ'].unique()))
+age_labels = {
+    "Young (21–35 yrs)": "Young",
+    "Mid (36–45 yrs)": "Mid",
+    "Older (46–65 yrs)": "Older"
+}
+
+age_display = st.selectbox("Select Age Group", list(age_labels.keys()))
+age_input = age_labels[age_display]  # use this for model input
+
 
 # Prepare input for prediction
 input_df = pd.DataFrame({
