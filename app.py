@@ -38,7 +38,17 @@ st.markdown("Explore how self-employment varies by **age group** and **education
 age_display = st.selectbox("Select Age Group", list(age_labels_display.keys()), key="age_group")
 age_input = age_labels_display[age_display]  # used for model input
 
-educ_input = st.selectbox("Select Education Level (coded 1–4)", sorted(df["educ"].unique()), key="education_level")
+# Education level labels and values
+education_labels = {
+    "1 - Less than high school": 1,
+    "2 - High school diploma or GED": 2,
+    "3 - Some college, no degree": 3,
+    "4 - Associate or Bachelor's degree": 4,
+    "5 - Graduate or professional degree": 5
+}
+
+educ_display = st.selectbox("Select Education Level", list(education_labels.keys()), key="education_level")
+educ_input = education_labels[educ_display]
 
 # Prepare input for prediction
 input_df = pd.DataFrame({
