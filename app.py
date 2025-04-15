@@ -1,3 +1,4 @@
+
 import streamlit as st
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
@@ -48,6 +49,7 @@ education_labels = {
 }
 
 educ_display = st.selectbox("Select Education Level", list(education_labels.keys()), key="education_level")
+st.caption("Education levels range from 1 (Less than high school) to 5 (Graduate/professional degree).")
 educ_input = education_labels[educ_display]
 
 # Prepare input for prediction
@@ -71,3 +73,18 @@ st.metric(label="Predicted Probability of Being Self-Employed", value=f"{prob:.2
 st.subheader("📈 Average Self-Employment Rate by Age Group")
 grouped = df.groupby("age_group_label")["selfemp_mis8"].mean().sort_index()
 st.bar_chart(grouped)
+
+# Bar Chart of Self-Employment Rate by Education Level
+st.subheader("📊 Average Self-Employment Rate by Education Level")
+edu_grouped = df.groupby("educ")["selfemp_mis8"].mean().sort_index()
+edu_labels = {
+    1: "Less than high school",
+    2: "High school diploma or GED",
+    3: "Some college, no degree",
+    4: "Associate/Bachelor's",
+    5: "Graduate/Professional"
+}
+edu_grouped.index = edu_grouped.index.map(edu_labels)
+st.bar_chart(edu_grouped)
+
+
