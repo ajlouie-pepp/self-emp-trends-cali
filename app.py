@@ -61,8 +61,3 @@ st.metric(label="Predicted Probability of Being Self-Employed", value=f"{prob:.2
 st.subheader("📈 Average Self-Employment Rate by Age Group")
 grouped = df.groupby("age_group_label")["selfemp_mis8"].mean().sort_index()
 st.bar_chart(grouped)
-
-# Optional: Expand to view raw data
-with st.expander("📄 View Raw Data"):
-    st.dataframe(df.head(100))
-
